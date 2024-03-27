@@ -5,7 +5,7 @@ export default [
     id : 1,
     link: "https://www.google.com",
     name: "Jesse Pollak",
-    color: "red",
+    color: "blue",
     Img: Images.RedHamster,
     betsData: [
       {
