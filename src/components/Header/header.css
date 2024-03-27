@@ -1,0 +1,94 @@
+.space {
+  background-color: rgb(26 44 56);
+  border-top: 2px solid rgb(78, 75, 75);
+  border-bottom: 2px solid rgb(78, 75, 75);
+  height: 20px;
+}
+
+.singIn1 button {
+  border: none;
+  outline: none;
+  background-color: rgb(12, 27, 37);
+}
+
+
+.hMain {
+  background-color: #5d4277;
+  padding: 16px 20px;
+  border-bottom: 6px solid #98ef00;
+  
+}
+
+.hMain .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.singIn a {
+  display: flex;
+  padding: 15px 30px 13px;
+  background: rgb(15, 33, 46);
+  color: #5d4277;
+  text-decoration: none;
+  align-items: center;
+  column-gap: 20px;
+  border-radius: 30px;
+  background: #98ef00;
+  line-height: 1em;
+  transition: 0.3s all;
+  font-family: "SplatterKings";
+}
+
+.singIn a img {
+  width: 20px
+}
+
+.singIn a:hover {
+  box-shadow: 0 7px 15px black
+}
+
+.hIcon img {
+  width: 300px;
+  margin: -15px 0 -22px;
+}
+
+.hIcon a{
+  display: inline-block;
+}
+
+.hIcon{
+    flex: 2;
+    text-align: center;
+}
+
+@media (max-width:640px){
+  .hIcon img {
+    width: 209px;
+    margin: -18px 0 -31px;
+  }
+
+  .singIn a {
+    padding: 11px 21px 11px;
+    column-gap: 14px;
+  }
+
+  .hIcon {
+    flex: 1;
+    text-align: left;
+ }
+}
+
+@media (max-width:479px){
+
+  .singIn a img {
+    width: 14px;
+  }
+  .hIcon img {
+    max-width: 95%;
+    margin: -12px 0 -17px -10px;
+    width: auto;
+  }
+
+
+}

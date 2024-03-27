@@ -1,0 +1,910 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_roachManagerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_executor",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "roundNumber",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "BoostAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "oldFee",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "newFee",
+				"type": "bool"
+			}
+		],
+		"name": "ExecutorUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokens",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "weth",
+				"type": "uint256"
+			}
+		],
+		"name": "IncreaseLiquidity",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "sponsor",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint128",
+				"name": "sponsorRoach",
+				"type": "uint128"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint128",
+				"name": "newTotal",
+				"type": "uint128"
+			}
+		],
+		"name": "IncreasedSponsor",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "sponsor",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint128",
+				"name": "sponsorRoach",
+				"type": "uint128"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint128",
+				"name": "amount",
+				"type": "uint128"
+			}
+		],
+		"name": "NewSponsor",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "who",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amountTokens",
+				"type": "uint256"
+			}
+		],
+		"name": "RandomWinner",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint128",
+				"name": "winnerRoach",
+				"type": "uint128"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "totalWinnerSponsors",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "totalLoserSponsors",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "numberOfWinners",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "numberOfLosers",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint152",
+				"name": "boostedAmount",
+				"type": "uint152"
+			}
+		],
+		"name": "RoundEnd",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "oldFee",
+				"type": "uint64"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "newFee",
+				"type": "uint64"
+			}
+		],
+		"name": "ServerFeeUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "roundNumber",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isAllowed",
+				"type": "bool"
+			}
+		],
+		"name": "SponsoringAllowed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint32",
+				"name": "oldFee",
+				"type": "uint32"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint32",
+				"name": "newFee",
+				"type": "uint32"
+			}
+		],
+		"name": "SponsoringFeeChanged",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "executor",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "addOrRemove",
+				"type": "bool"
+			}
+		],
+		"name": "addOrRemoveExecutor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint152",
+				"name": "amount",
+				"type": "uint152"
+			}
+		],
+		"name": "addRewardBoost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "allowSponsoring",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "newMax",
+				"type": "uint32"
+			}
+		],
+		"name": "changeMaxParticipants",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "newFee",
+				"type": "uint64"
+			}
+		],
+		"name": "changeServerFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_newSponsorFeePercent",
+				"type": "uint32"
+			}
+		],
+		"name": "changesponsorFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_winnerRoach",
+				"type": "uint32"
+			}
+		],
+		"name": "distributeRewards",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			}
+		],
+		"name": "getAllSponsorAddressesForRound",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "sponsorsForRound",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCurrentRoundNumber",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCurrentsponsorFee",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "sponsorFee",
+				"type": "uint32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMyCurrentSponsor",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "maker",
+						"type": "address"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roundNumber",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount",
+						"type": "uint128"
+					}
+				],
+				"internalType": "struct RoachRally.Sponsor",
+				"name": "currentSponsorData",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "sponsorAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalSponsorsOnWinnerRoach",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalSponsorsOnLoserRoaches",
+				"type": "uint256"
+			}
+		],
+		"name": "getRewardAmount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "reward",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			}
+		],
+		"name": "getRoundData",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint128",
+						"name": "roach1Total",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint128",
+						"name": "roach2Total",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint128",
+						"name": "roach3Total",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint128",
+						"name": "roach4Total",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach1Participants",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach2Participants",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach3Participants",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach4Participants",
+						"type": "uint32"
+					}
+				],
+				"internalType": "struct RoachRally.Round",
+				"name": "dataForRound",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_winnerRoach",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			}
+		],
+		"name": "getRoundEndData",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "totalSponsorsOnWinnerRoach",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalSponsorsOnLoserRoaches",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sponsorFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "boostedAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "randomWinnerFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfWinners",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfLosers",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint32",
+				"name": "roachId",
+				"type": "uint32"
+			}
+		],
+		"name": "getSponsorsPerRoachForRound",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "maker",
+						"type": "address"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roundNumber",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount",
+						"type": "uint128"
+					}
+				],
+				"internalType": "struct RoachRally.Sponsor[]",
+				"name": "allSponsorsForRound",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "roundNumber",
+				"type": "uint32"
+			}
+		],
+		"name": "getTotalSponsoredForRound",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "totalSponsored",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfTotalSponsors",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "maker",
+				"type": "address"
+			}
+		],
+		"name": "getsponsorForAddress",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "maker",
+						"type": "address"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roundNumber",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "roach",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount",
+						"type": "uint128"
+					}
+				],
+				"internalType": "struct RoachRally.Sponsor",
+				"name": "SponsorData",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint128",
+				"name": "_amount",
+				"type": "uint128"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "doChecks",
+				"type": "bool"
+			}
+		],
+		"name": "increaseSponsor",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "newAmount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint128",
+				"name": "_amount",
+				"type": "uint128"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "tgHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "increaseSponsorByExecutor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "rewardRandomParticipant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "serverFee",
+		"outputs": [
+			{
+				"internalType": "uint64",
+				"name": "",
+				"type": "uint64"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_winnerRoach",
+				"type": "uint32"
+			},
+			{
+				"internalType": "address",
+				"name": "_sponsor",
+				"type": "address"
+			}
+		],
+		"name": "simulateRewards",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "amountSponsored",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "reward",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_winnerRoach",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sponsorAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "simulateRewardsBeforeSponsor",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "amountSponsored",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "reward",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint128",
+				"name": "_roach",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "_amount",
+				"type": "uint128"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "doChecks",
+				"type": "bool"
+			}
+		],
+		"name": "sponsorRoach",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint128",
+				"name": "_roach",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "_amount",
+				"type": "uint128"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "tgHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "sponsorRoachByExecutor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "swapAndLiquify",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "swapTokensForEth",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
