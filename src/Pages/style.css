@@ -397,7 +397,7 @@ body:after{
 }
 
 
-@media (max-width:479px) {
+@media (max-width:768px) {
   .card-list {
   width: 375px;
   }
