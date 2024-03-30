@@ -92,7 +92,7 @@ export default function Header({onWalletConnect}) {
             </div>
             <div className="mx-auto text-xs">
               { isWalletConnected && <span className="">{account}</span>}
-                
+                </div>
           </div>
         </div>
       </div>
