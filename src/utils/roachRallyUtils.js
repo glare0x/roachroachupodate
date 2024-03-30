@@ -108,7 +108,7 @@ async function increaseSponsorRoach(amount) {
 
     const contract = new ethers.Contract(ROACH_RALLY_CONTRACT, roachRallyABI, signer);
     console.log("Race contract",ROACH_RALLY_CONTRACT)
-    const ret = await contract.increaseSponsorRoach(amount, address, true, { gasLimit: 5_000_000 });
+//    const ret = await contract.increaseSponsorRoach(amount, address, true, { gasLimit: 5_000_000 });
     return ret;
 }
 
