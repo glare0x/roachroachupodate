@@ -150,10 +150,6 @@
   scroll-behavior: auto;
 }
 
-.container {
-  max-width: 1510px;
-  margin: 0 auto;
-}
 
 .mainContent {
   position: relative;
@@ -397,13 +393,12 @@ body:after{
 }
 
 
-@media (max-width:768px) {
+@media (max-width:479px) {
   .card-list {
   width: 375px;
   }
 
   .heroVideo {
-  display: none;
   padding: 40px 20px 0;
   }
   .heroVideo iframe {
