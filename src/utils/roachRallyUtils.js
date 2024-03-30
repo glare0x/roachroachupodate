@@ -81,7 +81,7 @@ async function sponsorRoach(roachId, amount) {
     amount = ethers.utils.parseEther(amount.toString());
     console.log("Roach token contract",ROACH_TOKEN_CONTRACT)
     if (allowance.lt(amount)) {
-        const approveTx = await roachContract.approve(ROACH_RALLY_CONTRACT, amount, { gasLimit: 5_000_000 });
+        const approveTx = await roachContract.approve(ROACH_RALLY_CONTRACT, amount, { gasLimit: 500_000 });
         await approveTx.wait();
     }
 
