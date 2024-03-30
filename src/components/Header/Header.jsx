@@ -77,8 +77,8 @@ export default function Header({onWalletConnect}) {
   return (
     <>
       <div className="hMain">
-        <div className="container">
-          <div className="text-xs">
+       <div className="flex flex-col md:flex-row justify-between">
+          <div className="text-xs mx-auto">
           Roach Rally Token CA: { ROACH_TOKEN_CONTRACT}<br />
           </div>
           <div className="hIcon">
