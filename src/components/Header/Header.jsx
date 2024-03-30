@@ -84,11 +84,14 @@ export default function Header({onWalletConnect}) {
           <div className="hIcon">
             <a href="/"><Logo /></a>
           </div>
-          <div className="singIn">
-            <a href="/" onClick={connectWalletHandler} className="walletConnectButton">
-              {isWalletConnected ? 'Wallet Connected' : 'Connect Wallet'} <img src={user} alt="Wallet Icon" />
-            </a>
-            { isWalletConnected && <span className="text-sm">{account}</span> }
+         <div className="mx-auto">
+            <div className="singIn">
+              <a href="/" onClick={connectWalletHandler} className="walletConnectButton">
+                {isWalletConnected ? 'Wallet Connected' : 'Connect Wallet'} <img src={user} alt="Wallet Icon" />
+              </a>
+            </div>
+            <div className="mx-auto text-xs">
+              { isWalletConnected && <span className="">{account}</span>
           </div>
         </div>
       </div>
