@@ -393,19 +393,27 @@ body:after{
 }
 
 
-@media (max-width:479px) {
-  .card-list {
-  width: 375px;
-  }
+@media (max-width: 479px) {
+    .card-list {
+        width: 100%; /* Using 100% makes the width flexible and device-responsive */
+        max-width: 375px; /* Ensures that width does not exceed 375px */
+        margin: 0 auto; /* Centers the list in the available space */
+    }
 
-  .heroVideo {
-  padding: 40px 20px 0;
-  }
-  .heroVideo iframe {
-  height: 222px !important;
-  }
+    .heroVideo {
+        padding: 40px 20px 0; /* Top and horizontal padding with no bottom padding */
+    }
 
-  .cards>div {
-  row-gap: 14px;
-  }
+    .heroVideo iframe {
+        width: 100%; /* Makes the iframe responsive to the parent's width */
+        height: auto; /* Keeps the aspect ratio of the video intact */
+        max-height: 222px; /* Limits the height to not exceed 222px */
+    }
+
+    .cards > div {
+        display: grid; /* Assuming you want a single column layout on small screens */
+        grid-template-columns: 1fr; /* One column layout */
+        row-gap: 14px; /* Space between rows */
+        column-gap: 0; /* No space between columns, since it's a single column */
+    }
 }
