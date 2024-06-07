@@ -25,6 +25,7 @@ const VITE_ROACH_MANAGER_CONTRACT = "0x59B99595C4657e368649786228a16Dc68Dda9e3f"
 const ROACH_CONTRACT = VITE_ROACH_RALLY_CONTRACT;
 
 export default function Home({ connected }) {
+  console.log("I AM WORKING")
   const [isBetInputOpen, setBetInputIsOpen] = useState(false);
   const [betRoach, setBetRoach] = useState(0);
   const [roachID, setRoachID] = useState(0);
@@ -128,6 +129,7 @@ export default function Home({ connected }) {
       alert("Your bet has been placed!")
     }).catch(err => {
       setAskSponsorBusy(false);
+      debugger
       alert(err.reason)
     })
   }
