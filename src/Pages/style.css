@@ -417,3 +417,68 @@ body:after{
         column-gap: 0; /* No space between columns, since it's a single column */
     }
 }
+
+.managerBox {
+  display: block;
+  padding: 20px; /* Increased padding for better spacing inside the box */
+  background-color: #0F212E; /* or any color you prefer */
+  border: 1px solid #98ef00;
+  border-radius: 8px;
+  margin-top: 20px; /* Increased margin to add more space above the box */
+  margin-bottom: 40px; /* Increased margin to add more space below the box */
+  width: 80%; /* Adjust width as needed */
+  max-width: 600px; /* Ensures it doesn't get too wide */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardmainwrap {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.heroVideo {
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.managerBox .coinFlip {
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
