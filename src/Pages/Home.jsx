@@ -1,8 +1,6 @@
-import { useEffect, useState, Fragment } from 'react'
+import { useEffect, useState } from 'react'
 import { ethers } from 'ethers';
-import data from "../components/Chat/data.json";
 import bets from "../components/BetSection/bets.js";
-import Button from "../assets/Button";
 import BetCard from "../components/BetSection/BetCard";
 import CountDown from "../components/useCountDown";
 import AskSponsor from "../components/BetSection/AskSponsor";
@@ -25,6 +23,7 @@ const VITE_ROACH_RALLY_CONTRACT = "0xA2b3174072FEd15A7C2599634a15dBeD12989096"
 const VITE_ROACH_FLIP_CONTRACT = "0x87d7ac0669eef0753303ec24b19d4233d252eb05"
 const VITE_ROACH_MANAGER_CONTRACT = "0x59B99595C4657e368649786228a16Dc68Dda9e3f"
 const ROACH_CONTRACT = VITE_ROACH_RALLY_CONTRACT;
+
 export default function Home({ connected }) {
   console.log("I AM WORKING")
   const [isBetInputOpen, setBetInputIsOpen] = useState(false);
@@ -68,8 +67,8 @@ export default function Home({ connected }) {
       })
     })
   });
+
   contract.on("RoundEnd", (roundNumber, winnerRoach, totalWinnerSponsors, totalLoserSponsors, numberOfWinners, numberOfLosers) => {
-    debugger
     console.log(`Round End Detected: `);
     // Additional logic to handle the event
     setRoundEndData({
@@ -83,7 +82,6 @@ export default function Home({ connected }) {
     setShowRoundEndDialog(true);
   });
 
-
   useEffect(() => {
     if (connected) {
       getCurrentRoundNumber().then((result) => {
@@ -91,19 +89,9 @@ export default function Home({ connected }) {
       })
     }
   }, [connected]);
-  useEffect(() => {
 
+  useEffect(() => {
     if (roundNumber > 0) {
-      /*
-      simulateRewards(2).then((res) => {
-        debugger
-        console.log("Simulated Rewards",res)
-        setSimulatedRewards({
-          sponsored : ethers.utils.formatEther(res.amountSponsored.toString()),
-          reward : ethers.utils.formatEther(res.reward.toString())
-        })
-      })
-      */
       getRoundData(roundNumber).then((res) => {
         setRoachTotals({
           "1": ethers.utils.formatEther(res.roach1Total.toString()),
@@ -119,7 +107,6 @@ export default function Home({ connected }) {
         })
       })
     }
-
   }, [roundNumber])
 
   const openBetDialog = (event, id) => {
@@ -156,13 +143,13 @@ export default function Home({ connected }) {
           <div className="cardmainwrap">
 
             <div className="heroVideo hide-on-mobile">
-  <iframe
-    src="https://player.twitch.tv/?channel=roachrally&parent=www.roachrallyraces.xyz"
-    height="600"
-    width="100%"
-    allowFullScreen={true}>
-  </iframe>
-</div>
+              <iframe
+                src="https://player.twitch.tv/?channel=roachrally&parent=www.roachrallyraces.xyz"
+                height="600"
+                width="100%"
+                allowFullScreen={true}>
+              </iframe>
+            </div>
 
             <div className="w-3/4 mx-auto block mt-4">
               <h2 className="text-2xl text-center">Round number #{roundNumber}</h2>
@@ -172,29 +159,26 @@ export default function Home({ connected }) {
                     Your sponsor: {simulatedRewards.sponsored}<br />
                     Possible reward: {simulatedRewards.reward}
                   </div>
-                )
-                }
+                )}
               </div>
             </div>
 
-            {/*<CountDown
-              time={{ hrs: 4, min: 20, sec: 40 }}
-              text={"Sponsor Now, Race Starts in"}
-            />*/}
             <div className="cards">
               {bets.map((bet) => (
                 <BetCard key={bet.name} data={bet} total={roachTotals[bet.id]} participants={roachParticipants[bet.id]} addBet={openBetDialog} />
               ))}
             </div>
           </div>
-          <div className="chatwrap my-2">
+
+          <h2 className="text-xl text-center font-bold my-4">Telegram Game Roach Manager</h2>
+          <div className="managerBox my-2">
             <h1 className="font-bold text-lg mb-2">Deposit / Withdraw to Roach Manager</h1>
             <div className="">
               <CoinFlip connected={connected} />
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </>
   )
