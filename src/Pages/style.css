@@ -418,27 +418,67 @@ body:after{
     }
 }
 
-@media (max-width: 479px) {
-    .card-list {
-        width: 100%; /* Using 100% makes the width flexible and device-responsive */
-        max-width: 375px; /* Ensures that width does not exceed 375px */
-        margin: 0 auto; /* Centers the list in the available space */
-    }
-
-    .heroVideo {
-        padding: 40px 20px 0; /* Top and horizontal padding with no bottom padding */
-    }
-
-    .heroVideo iframe {
-        width: 100%; /* Makes the iframe responsive to the parent's width */
-        height: auto; /* Keeps the aspect ratio of the video intact */
-        max-height: 222px; /* Limits the height to not exceed 222px */
-    }
-
-    .cards > div {
-        display: grid; /* Assuming you want a single column layout on small screens */
-        grid-template-columns: 1fr; /* One column layout */
-        row-gap: 14px; /* Space between rows */
-        column-gap: 0; /* No space between columns, since it's a single column */
-    }
+.managerBox {
+  display: block;
+  padding: 20px; /* Increased padding for better spacing inside the box */
+  background-color: #0F212E; /* or any color you prefer */
+  border: 1px solid #98ef00;
+  border-radius: 8px;
+  margin-top: 20px; /* Increased margin to add more space above the box */
+  margin-bottom: 40px; /* Increased margin to add more space below the box */
+  width: 80%; /* Adjust width as needed */
+  max-width: 600px; /* Ensures it doesn't get too wide */
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardmainwrap {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.heroVideo {
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.managerBox .coinFlip {
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
