@@ -126,7 +126,7 @@ export default function Home({ connected }) {
     sponsorRoach(roachID, amount).then((res) => {
       setAskSponsorBusy(false);
       setBetInputIsOpen(false)
-      alert("Your bet has been placed!")
+      alert("Sponsorship successful!")
     }).catch(err => {
       setAskSponsorBusy(false);
       debugger
